@@ -1,0 +1,6 @@
+FROM alpine
+
+VOLUME /db
+WORKDIR /db
+
+CMD ["sh", "-c", "touch /db/app.db && tail -f /dev/null"]

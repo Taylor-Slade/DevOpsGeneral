@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+      - db-data:/db
+    environment:
+      - FLASK_APP=app
+      - FLASK_ENV=development
+      - DATABASE_URL=sqlite:////db/app.db
+    depends_on:
+      - db
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile-db
+    volumes:
+      - db-data:/db
+
+volumes:
+  db-data:

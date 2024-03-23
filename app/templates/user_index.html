@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Management</title>
+</head>
+<body>
+    <h1>User Management</h1>
+
+    <!-- Display Users -->
+    {% for user in users %}
+    <p>{{ user.username }} - {{ user.email }}
+        <!-- Edit User Form -->
+        <form method="post" action="{{ url_for('user.update_user', id=user.id) }}">
+            <input type="text" name="username" placeholder="New Username" required>
+            <input type="email" name="email" placeholder="New Email" required>
+            <!-- Add other fields as needed -->
+            <input type="submit" value="Update">
+        </form>
+        <!-- Delete User Form -->
+        <form method="post" action="{{ url_for('user.delete_user', id=user.id) }}">
+            <input type="submit" value="Delete">
+        </form>
+    </p>
+    {% endfor %}
+
+    <!-- Create User Form -->
+    <div>
+        <h1>Create a new user!</h1>
+        <form method="post" action="{{ url_for('user.create_user') }}">
+            <input type="text" name="username" placeholder="Username" value="{{ prev_values.username if prev_values else '' }}" required>
+            <input type="email" name="email" placeholder="Email" value="{{ prev_values.email if prev_values else '' }}" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="submit" value="Create User">
+        </form><br>
+    </div>
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+</body>
+</html>
