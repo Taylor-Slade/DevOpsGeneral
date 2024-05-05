@@ -11,8 +11,8 @@
 Open a teminal and navigate to where you want the project repo to live. Then run
 
 ```
-git clone https://github.com/Taylor-Slade/biokey.git
-cd biokey
+git clone https://github.com/Taylor-Slade/DevOpsGeneral.git
+cd DevOpsGeneral
 deploy.sh
 ```
 
